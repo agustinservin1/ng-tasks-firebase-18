@@ -51,3 +51,11 @@ src/enviroments/*
 src/environments/environments.ts
 src/environments/environments.prod.ts
 
+.vscode
+.git
+.public
+.editorconfig
+bun.lockb
+package-log.json
+tailwind.config.js
+tsconfig.app.json
