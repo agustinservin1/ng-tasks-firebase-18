@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { hasEmailError, isRequired } from '../../utils/validators';
 import { toast } from 'ngx-sonner';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GoogleButtonComponent } from '../../ui/google-button/google-button.component';
 
 interface FormSignIn {
   email: FormControl<string | null>;
@@ -14,7 +15,7 @@ interface FormSignIn {
 @Component({
   selector: 'app-sign-in',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, GoogleButtonComponent],
   templateUrl: './sign-in.component.html',
 })
 export default class SignInComponent {
@@ -44,12 +45,21 @@ export default class SignInComponent {
 
       if (!email || !password) return;
 
-      await this._authService.sigIn({ email, password });
+      await this._authService.signIn({ email, password });
 
       toast.success('User signed in successfully');
-      this._router.navigate(['/tasks']);
+      this._router.navigateByUrl('/tasks');
     } catch (error) {
       toast.error('Error while signing in');
+    }
+  }
+  async submitWithGoogle() {
+    try {
+      await this._authService.signInWithGoogle();
+      toast.success('User signed in successfully');
+      this._router.navigateByUrl('/tasks');
+    } catch (error) {
+      toast.error('Error while signing');
     }
   }
 }

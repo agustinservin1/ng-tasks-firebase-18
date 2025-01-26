@@ -9,6 +9,7 @@ import { hasEmailError, isRequired } from '../../utils/validators';
 import { AuthService } from '../../data-acces/auth.service';
 import { toast } from 'ngx-sonner';
 import { Router, RouterLink } from '@angular/router';
+import { GoogleButtonComponent } from '../../ui/google-button/google-button.component';
 
 interface FormSignup {
   email: FormControl<string | null>;
@@ -18,7 +19,7 @@ interface FormSignup {
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink, GoogleButtonComponent],
   templateUrl: './sign-up.component.html',
 })
 export default class SignUpComponent {
@@ -51,9 +52,18 @@ export default class SignUpComponent {
       await this._authService.signUp({ email, password });
 
       toast.success('User signed up successfully');
-      this._router.navigate(['/tasks']);
+      this._router.navigateByUrl('/tasks');
     } catch (error) {
       toast.error('Error while signing up');
+    }
+  }
+  async submitWithGoogle() {
+    try {
+      await this._authService.signInWithGoogle();
+      toast.success('User signed in successfully');
+      this._router.navigateByUrl('/tasks');
+    } catch (error) {
+      toast.error('Error while signing');
     }
   }
 }
