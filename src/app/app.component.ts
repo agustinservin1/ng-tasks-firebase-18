@@ -7,13 +7,7 @@ import { AuthStateService } from './shared/data-acces/auth-state.service';
   standalone: true,
   imports: [RouterOutlet, NgxSonnerToaster],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  private _authState = inject(AuthStateService)
-  private _router =inject(Router)
-  async logOut() {
-    await this._authState.logOut();
-    this._router.navigateByUrl('/auth/sign-in');
-  };
+  
 }
