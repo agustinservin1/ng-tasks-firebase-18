@@ -51,7 +51,7 @@ src/enviroments/*
 src/environments/environments.ts
 src/environments/environments.prod.ts
 
-.vscode
+.vscode/
 .git
 .public
 .editorconfig

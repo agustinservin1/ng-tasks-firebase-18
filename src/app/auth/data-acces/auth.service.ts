@@ -33,6 +33,7 @@ export class AuthService {
 
   signInWithGoogle() {
     const provider = new GoogleAuthProvider();
+    //provider.setCustomParameters({prompt: "select_account"});
     return signInWithPopup(this._auth, provider);
   }
 }
