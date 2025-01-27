@@ -1,13 +1,14 @@
 import { Component, inject, signal } from '@angular/core';
 import { TableComponent } from '../../ui/table/table.component';
 import { RouterLink } from '@angular/router';
-import { TaskService } from '../../data-access/task.service';
 import { toast } from 'ngx-sonner';
+import { TaskService } from '../../data-access/task.service';
 
 @Component({
   selector: 'app-task-list',
   standalone: true,
   imports: [TableComponent, RouterLink],
+  providers: [TaskService],
   templateUrl: './task-list.component.html',
 })
 export default class TaskListComponent {
